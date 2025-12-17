@@ -166,8 +166,11 @@ allowed = function(url, parenturl)
     return true
   end
 
-  if string.match(url, "^https?://secure%-bufftoon%.gscdn%.plaync%.com/.")
-    or string.match(url, "%?__lsu_sa_=") then
+  if (not parenturl or not string.match(parenturl, "[%?&]comment="))
+    and (
+      string.match(url, "^https?://secure%-bufftoon%.gscdn%.plaync%.com/.")
+      or string.match(url, "%?__lsu_sa_=")
+    ) then
     return true
   end
 
