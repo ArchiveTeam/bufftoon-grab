@@ -478,6 +478,9 @@ wget.callbacks.write_to_warc = function(url, http_stat)
     error("No item name found.")
   end
   is_initial_url = false
+  if http_stat["statcode"] == 400 then
+    error("Aborting on 400 immediately.")
+  end
   if http_stat["statcode"] ~= 200
     and http_stat["statcode"] ~= 302
     and http_stat["statcode"] ~= 404 then
